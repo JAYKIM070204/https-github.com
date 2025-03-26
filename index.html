@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanRail - 기차 여행 가이드</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #info { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>ScanRail 🚆</h1>
+    <p>기차의 현재 위치를 자동 감지하여 관광 정보를 제공합니다!</p>
+    <button onclick="getLocation()">위치 확인하기</button>
+    <div id="info"></div>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById("info").innerHTML = "이 브라우저는 GPS를 지원하지 않습니다.";
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            let locationInfo = "현재 위치를 찾을 수 없습니다.";
+
+            if (lat >= 37.56 && lat <= 37.58) locationInfo = "서울역 - 한강을 따라 펼쳐지는 야경이 멋진 곳!";
+            else if (lat >= 37.49 && lat <= 37.51) locationInfo = "횡성역 - 한우가 유명한 지역입니다!";
+            else if (lat >= 37.37 && lat <= 37.39) locationInfo = "평창역 - 동계올림픽이 열린 도시입니다!";
+            else if (lat >= 37.75 && lat <= 37.77) locationInfo = "강릉역 - 아름다운 바다와 커피거리가 유명합니다!";
+            else if (lat >= 37.69 && lat <= 37.71) locationInfo = "정동진역 - 해돋이가 유명한 명소입니다!";
+            else if (lat >= 37.48 && lat <= 37.50) locationInfo = "동해역 - 청정한 바다와 해산물이 맛있는 지역입니다!";
+
+            document.getElementById("info").innerHTML = `<h2>${locationInfo}</h2>`;
+        }
+    </script>
+</body>
+</html>
